@@ -7,7 +7,7 @@ class Game
   end
 
   def errors
-    @user_guesses - normalized_letter
+    @user_guesses - normalized_letters
   end
 
   def errors_made
@@ -19,21 +19,24 @@ class Game
   end
 
   def normalize_letter(letter)
-    return "Е" if letter == "Ё"
-    return "И" if letter == "Й"
-    letter
-  end
+    return 'Е' if letter == 'Ё'
+    return 'И' if letter == 'Й'
 
-  def normalized_letter
+    letter
+ end
+
+  def normalized_letters
     @letters.map { |letter| normalize_letter(letter) }
   end
+
+  private :normalized_letters, :normalize_letter
 
   def letters_to_guess
     @letters.map { |letter| letter if @user_guesses.include?(normalize_letter(letter)) }
   end
 
   def lost?
-    errors_allowed == 0
+    errors_allowed.zero?
   end
 
   def over?
@@ -47,7 +50,7 @@ class Game
 
   # Возвращает true, если не осталось неотгаданных букв (пользователь выиграл)
   def won?
-    (normalized_letter - @user_guesses).empty?
+    (normalized_letters - @user_guesses).empty?
   end
 
   def word
