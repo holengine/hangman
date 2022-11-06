@@ -3,7 +3,7 @@ require_relative 'lib/game'
 
 puts 'Всем привет!'
 
-word = File.readlines("#{Dir.pwd}/data/words.txt", chomp: true).sample
+word = File.readlines("#{File.dirname(__FILE__)}/data/words.txt", chomp: true).sample
 
 game = Game.new(word)
 console_interface = ConsoleInterface.new(game)
