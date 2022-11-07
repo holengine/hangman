@@ -23,16 +23,6 @@ class Game
     return 'И' if letter == 'Й'
 
     letter
- end
-
-  def normalized_letters
-    @letters.map { |letter| normalize_letter(letter) }
-  end
-
-  private :normalized_letters, :normalize_letter
-
-  def letters_to_guess
-    @letters.map { |letter| letter if @user_guesses.include?(normalize_letter(letter)) }
   end
 
   def lost?
@@ -55,5 +45,15 @@ class Game
 
   def word
     @letters.join
+  end
+
+  private
+
+  def normalized_letters
+    @letters.map { |letter| normalize_letter(letter) }
+  end
+
+  def letters_to_guess
+    @letters.map { |letter| letter if @user_guesses.include?(normalize_letter(letter)) }
   end
 end
