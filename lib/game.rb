@@ -18,11 +18,8 @@ class Game
     TOTAL_ERRORS_ALLOWED - errors_made
   end
 
-  def normalize_letter(letter)
-    return 'Е' if letter == 'Ё'
-    return 'И' if letter == 'Й'
-
-    letter
+  def letters_to_guess
+    @letters.map { |letter| letter if @user_guesses.include?(normalize_letter(letter)) }
   end
 
   def lost?
@@ -53,7 +50,10 @@ class Game
     @letters.map { |letter| normalize_letter(letter) }
   end
 
-  def letters_to_guess
-    @letters.map { |letter| letter if @user_guesses.include?(normalize_letter(letter)) }
+  def normalize_letter(letter)
+    return 'Е' if letter == 'Ё'
+    return 'И' if letter == 'Й'
+
+    letter
   end
 end
