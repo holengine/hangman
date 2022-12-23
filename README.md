@@ -17,5 +17,6 @@ Classic game [Hangman](<https://en.wikipedia.org/wiki/Hangman_(game)>). How to p
 ```bash
 git clone https://github.com/holengine/hangman.git
 cd hangman
-ruby main.rb
+bundle install
+bundle exec ruby main.rb
 ```
